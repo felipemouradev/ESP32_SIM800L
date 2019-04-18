@@ -1,9 +1,9 @@
 
-# Arduino SIM800L library
+# ESP32 SIM800L library
 A smart HTTP library based on Seeeduino that implements the AT HTTP commands to perform GET and POST requests to a JSON API.
 
 ## Support
-* Your board have to support the standard SoftwareSerial library. It doesn't  work with HardwareSerial based boards for the moment.
+* Your board have to support the standard HardwareSerial library.
 * The API response have to be a valid JSON.
 * The library has been tested again Arduino Uno and Arduino Nano
 
