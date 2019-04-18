@@ -30,7 +30,7 @@
 #define __SIM800_H__
 
 #include "Arduino.h"
-#include <SoftwareSerial.h>
+#include <HardwareSerial.h>
 
 #define TRUE                    1
 #define FALSE                   0
@@ -123,7 +123,7 @@ public:
 
 private:
 
-    SoftwareSerial serialSIM800;
+    HardwareSerial serialSIM800;
     bool debugMode;
     unsigned int resetPin;
 
