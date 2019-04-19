@@ -7,7 +7,7 @@ unsigned long waitForRunTime = 0;
 unsigned int RX_PIN = 7;
 unsigned int TX_PIN = 8;
 unsigned int RST_PIN = 12;
-HTTP http(9600, RX_PIN, TX_PIN, RST_PIN);
+HTTP http(2, 9600); //, RX_PIN, TX_PIN, RST_PIN
 
 // the setup routine runs once when you press reset:
 void setup() {
@@ -55,26 +55,26 @@ void trackTimeEntry(){
   print(F("HTTP POST: "), result);
   if (result == SUCCESS) {
     Serial.println(response);
-    StaticJsonBuffer<32> jsonBuffer;
-    JsonObject& root = jsonBuffer.parseObject(response);
+    //StaticJsonBuffer<32> jsonBuffer;
+    //JsonObject& root = jsonBuffer.parseObject(response);
     lastRunTime = millis();
-    waitForRunTime = root["waitForRunTime"];
+    //waitForRunTime = root["waitForRunTime"];
     
     print(F("Last run time: "), lastRunTime);
-    print(F("Next post in: "), waitForRunTime);
+    //print(F("Next post in: "), waitForRunTime);
   }
 
   result = http.get("your.domain/api/timing", response);
   print(F("HTTP GET: "), result);
   if (result == SUCCESS) {
     Serial.println(response);
-    StaticJsonBuffer<32> jsonBuffer;
-    JsonObject& root = jsonBuffer.parseObject(response);
+    /*StaticJsonBuffer<32> jsonBuffer;
+    JsonObject& root = jsonBuffer.parseObject(response);*/
     lastRunTime = millis();
-    waitForRunTime = root["waitForRunTime"];
+    //waitForRunTime = root["waitForRunTime"];
     
     print(F("Last run time: "), lastRunTime);
-    print(F("Next post in: "), waitForRunTime);
+    //print(F("Next post in: "), waitForRunTime);
   }
   
   print(F("HTTP disconnect: "), http.disconnect());

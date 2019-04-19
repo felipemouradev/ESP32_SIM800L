@@ -55,7 +55,8 @@ enum Result {
 class HTTP : public SIM800 {
 
   public:
-    HTTP(unsigned int baudRate, unsigned int rxPin, unsigned int txPin, unsigned int rstPin, bool debug = TRUE):SIM800(baudRate, rxPin, txPin, rstPin, debug){};
+	//HTTP(unsigned int baudRate, unsigned int rxPin, unsigned int txPin, unsigned int rstPin, bool debug = TRUE):SIM800(baudRate, rxPin, txPin, rstPin, debug){}; 
+	HTTP(int uart_nr, unsigned int baudRate,bool debug = TRUE) :SIM800(uart_nr, baudRate, debug){}; // (baudRate, rxPin, txPin, rstPin, debug) {};
     Result configureBearer(const char *apn);
     Result connect();
     Result disconnect();

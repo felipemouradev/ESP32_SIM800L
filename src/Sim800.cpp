@@ -85,7 +85,7 @@ void SIM800::cleanBuffer(char *buffer, int count)
 
 void SIM800::sendCmd(const char* cmd)
 {
-    serialSIM800.listen();
+    //serialSIM800.listen();
     serialSIM800.flush();
     delay(500);
     serialSIM800.write(cmd);
