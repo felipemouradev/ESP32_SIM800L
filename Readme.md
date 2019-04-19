@@ -1,6 +1,7 @@
 
-# ESP32 SIM800L library
-A smart HTTP library based on Seeeduino that implements the AT HTTP commands to perform GET and POST requests to a JSON API.
+# ESP32 SIM800 library
+Library forked from the https://github.com/carrascoacd/ArduinoSIM800L project. 
+Adaptation for using ESP32 HardwaareSerial UART. 
 
 ## Support
 * Your board have to support the standard HardwareSerial library.
