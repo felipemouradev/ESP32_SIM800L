@@ -30,6 +30,8 @@
 
 #define BEARER_PROFILE_GPRS "AT+SAPBR=3,1,\"Contype\",\"GPRS\"\r\n"
 #define BEARER_PROFILE_APN "AT+SAPBR=3,1,\"APN\",\"%s\"\r\n"
+#define BEARER_PROFILE_APN_USER "AT+SAPBR=3,1,\"USER\",\"%s\"\r\n"
+#define BEARER_PROFILE_APN_PWD "AT+SAPBR=3,1,\"PWD\",\"%s\"\r\n"
 #define QUERY_BEARER "AT+SAPBR=2,1\r\n"
 #define OPEN_GPRS_CONTEXT "AT+SAPBR=1,1\r\n"
 #define CLOSE_GPRS_CONTEXT "AT+SAPBR=0,1\r\n"
@@ -61,7 +63,7 @@
 #define CONNECTED "+CREG: 0,1"
 #define BEARER_OPEN "+SAPBR: 1,1"
 
-Result HTTP::configureBearer(const char *apn){
+Result HTTP::configureBearer(const char *apn, const char *user, const char *pwd){
 
   Result result = SUCCESS;
 
@@ -87,6 +89,16 @@ Result HTTP::configureBearer(const char *apn){
   char httpApn[64];
   sprintf(httpApn, BEARER_PROFILE_APN, apn);
   if (sendCmdAndWaitForResp(httpApn, OK, 2000) == FALSE)
+    result = ERROR_BEARER_PROFILE_APN;
+  
+  char httpApnUser[64];
+  sprintf(httpApn, BEARER_PROFILE_APN_USER, user);
+  if (sendCmdAndWaitForResp(httpApnUser, OK, 2000) == FALSE)
+    result = ERROR_BEARER_PROFILE_APN;
+  
+  char httpApnPwd[64];
+  sprintf(httpApn, BEARER_PROFILE_APN_PWD, pwd);
+  if (sendCmdAndWaitForResp(httpApnUser, OK, 2000) == FALSE)
     result = ERROR_BEARER_PROFILE_APN;
 
   return result;
